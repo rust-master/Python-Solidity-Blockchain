@@ -6,8 +6,8 @@
     "tests/test_simple_storage.py": {
       "coverage": false,
       "isolated": false,
-      "results": "F",
-      "sha1": "c763838f8f40cbfb101b3f8fb1edd93a98ce5c93",
+      "results": "..",
+      "sha1": "e075fcccafe6e3fd78665ec615082b9c4060947f",
       "txhash": []
     }
   },
