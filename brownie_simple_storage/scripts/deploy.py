@@ -4,7 +4,8 @@ import os
 
 def deploy_simple_storage():
     account = accounts[0]
-    SimpleStorage.deploy({"from": account})
+    simple_storage = SimpleStorage.deploy({"from": account})
+    print("SimpleStorage:", simple_storage)
 
 
 def main():
