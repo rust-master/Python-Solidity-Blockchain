@@ -1,9 +1,9 @@
-from eth_account import account
-from brownie import accounts
+from brownie import accounts, config
+import os
 
 
 def deploy_simple_storage():
-    account = accounts[0]
+    account = accounts.add(config["wallets"]["from_key"])
     print(account)
 
 
