@@ -2,6 +2,9 @@ from solcx import compile_standard
 import json
 from web3 import Web3
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # from solcx import install_solc
 
@@ -37,7 +40,7 @@ abi = compiled_sol["contracts"]["SimpleStorage"]["Storage"]["abi"]
 
 # for connecting to ganache
 
-w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
+w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:8545"))
 chain_id = 1337
 my_address = w3.eth.accounts[0]
 private_key = os.getenv("PRIVATE_KEY")
