@@ -56,17 +56,30 @@ txn = contract.constructor().buildTransaction(
 )
 # Sign the transaction
 signed = w3.eth.account.signTransaction(txn, private_key=private_key)
-
+print("Deploying Contract...")
 # Send the transaction
 tx_hash = w3.eth.sendRawTransaction(signed.rawTransaction)
 tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-
+print("Deployed")
 # Working with the contract, you need:
 # 1. Contract address
 # 2. Contract instance
 # 3. Contract functions
 
-# contract_address = tx_receipt.contractAddress
 contract_instance = w3.eth.contract(address=tx_receipt.contractAddress, abi=abi)
-print(contract_instance.functions.set(123).call())
+print(contract_instance.functions.get().call())
+print("Updaing contract....")
+
+store_txn = contract_instance.functions.set(42).buildTransaction(
+    {
+        "chainId": chain_id,
+        "from": my_address,
+        "nonce": nonce + 1,
+    }
+)
+signed_store_txn = w3.eth.account.signTransaction(store_txn, private_key=private_key)
+
+send_store_tx = w3.eth.sendRawTransaction(signed_store_txn.rawTransaction)
+tx_receipt = w3.eth.waitForTransactionReceipt(send_store_tx)
+print("Updated!")
 print(contract_instance.functions.get().call())
